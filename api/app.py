@@ -10,7 +10,7 @@ CORS(app)
 
 
 try:
-    model = tf.keras.models.load_model('../server/models/my_model.h5')
+    model = tf.keras.models.load_model('api/models/my_model.h5')
 except Exception as e:
     print(f"Error loading model: {e}")
     model = None
@@ -26,7 +26,7 @@ def preprocess_image(image):
     image = np.expand_dims(image, axis=0)  
     return image
 
-@app.route('/api/upload', methods=['POST', 'GET'])
+@app.route('/upload', methods=['POST', 'GET'])
 def upload_image():
     if 'file' not in request.files:
         return jsonify({'error': 'No file part'}), 400
